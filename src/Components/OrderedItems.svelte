@@ -3,7 +3,7 @@
   export let Item = {}
 
   const removeItem = () => {
-    $orderedItems = $orderedItems(item => orderedItems.sku != item.id)
+    $orderedItems = $orderedItems.filter(thing => Item.sku != thing.sku)
   }
 </script>
 
@@ -28,5 +28,5 @@
   <div>
     #{Item.sku} {Item.name} ${Item.price}/{Item.unit} Quantity {Item.quantity}
   </div>
-  <button class="btn" on:click={removeItem}>Remove</button>
+  <button class="btn" on:click={removeItem}>Remove from Cart</button>
 </div>
