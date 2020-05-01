@@ -27,6 +27,7 @@
 <div class="orderItem">
   <div>
     #{Item.sku} {Item.name} ${Item.price}/{Item.unit} Quantity {Item.quantity}
+    <input bind:value={Item.quantity} />
   </div>
   <button class="btn" on:click={removeItem}>Remove from Cart</button>
 </div>

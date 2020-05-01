@@ -10,7 +10,7 @@
         return
       }
     }
-    product.quantity = 1
+    // product.quantity = 1
     $orderedItems = [...$orderedItems, product]
   }
 </script>
@@ -35,8 +35,8 @@
 
 <div class="product">
   <div class="item">
-    #{product.sku} {product.name} ${product.price}/{product.unit}
-    <!-- Quantity {product.quantity} -->
+    #{product.sku} {product.name} ${product.price}/{product.unit} Quantity {product.quantity}
+    <input bind:value={product.quantity} />
   </div>
 
   <button class="btn" on:click={buyProduct}>Add to Cart</button>
