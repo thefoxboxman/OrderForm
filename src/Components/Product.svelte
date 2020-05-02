@@ -5,13 +5,14 @@
   const buyProduct = () => {
     for (let item of $orderedItems) {
       if (item.sku == product.sku) {
-        item.quantity++
+        item.quantity = product.quantity
         $orderedItems = $orderedItems
         return
       }
     }
-    // product.quantity = 1
+
     $orderedItems = [...$orderedItems, product]
+    // document.getElementById("buyButton").innerText = "Update Cart"
   }
 </script>
 
@@ -24,8 +25,13 @@
     padding-left: 0.5em;
     border: 2px solid black;
   }
+  input {
+    width: 30px;
+    color: green;
+    text-align: right;
+  }
 
-  .btn {
+  #buyButton {
     margin-top: 0.5em;
     background-color: green;
     color: whitesmoke;
@@ -35,10 +41,20 @@
 
 <div class="product">
   <div class="item">
-    #{product.sku} {product.name} ${product.price}/{product.unit} Quantity {product.quantity}
-    <input bind:value={product.quantity} />
+    {#if product.unit == 'kg'}
+      #{product.sku} {product.name} ${product.price}/{product.unit} Enter
+      quantity required:
+      <input bind:value={product.quantity} />
+      Total: ${(product.quantity * product.price).toFixed(2)}
+    {:else}
+      #{product.sku} {product.name} ${product.price}/{product.unit} Enter
+      quantity required:
+      <input bind:value={product.quantity} />
+      Total: ${(product.quantity * product.price).toFixed(2)}
+    {/if}
+
   </div>
 
-  <button class="btn" on:click={buyProduct}>Add to Cart</button>
+  <button id="buyButton" class="btn" on:click={buyProduct}>Add to Cart</button>
 
 </div>

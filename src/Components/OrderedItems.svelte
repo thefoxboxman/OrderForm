@@ -16,6 +16,11 @@
     padding-left: 0.5em;
     border: 2px solid black;
   }
+  input {
+    width: 50px;
+    color: red;
+    text-align: center;
+  }
   .btn {
     margin-top: 0.5em;
     background-color: orangered;
@@ -26,8 +31,14 @@
 
 <div class="orderItem">
   <div>
-    #{Item.sku} {Item.name} ${Item.price}/{Item.unit} Quantity {Item.quantity}
-    <input bind:value={Item.quantity} />
+    #{Item.sku} {Item.name} ${Item.price}/{Item.unit}
+    <div>
+      Quantity Ordered: {Item.quantity} Total: ${(Item.quantity * Item.price).toFixed(2)}
+    </div>
+    <div>
+      Change Quantity:
+      <input bind:value={Item.quantity} />
+    </div>
   </div>
   <button class="btn" on:click={removeItem}>Remove from Cart</button>
 </div>
