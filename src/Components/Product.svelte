@@ -17,7 +17,7 @@
 </script>
 
 <style>
-  .product {
+  .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,24 +37,43 @@
     color: whitesmoke;
     cursor: pointer;
   }
+  p {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin: 0.1em;
+  }
 </style>
 
 <div class="product">
-  <div class="item">
-    {#if product.unit == 'kg'}
-      #{product.sku} {product.name} ${product.price}/{product.unit} Enter
-      quantity required:
-      <input bind:value={product.quantity} />
-      Total: ${(product.quantity * product.price).toFixed(2)}
-    {:else}
-      #{product.sku} {product.name} ${product.price}/{product.unit} Enter
-      quantity required:
-      <input bind:value={product.quantity} />
-      Total: ${(product.quantity * product.price).toFixed(2)}
-    {/if}
 
-  </div>
-
-  <button id="buyButton" class="btn" on:click={buyProduct}>Add to Cart</button>
+  {#if product.unit == 'kg'}
+    <div class="item">
+      <p>{product.emoji}</p>
+      <div>
+        #{product.sku} {product.name} ${product.price}/{product.unit} Enter
+        quantity required:
+        <input bind:value={product.quantity} />
+        {product.unit} Total: ${(product.quantity * product.price).toFixed(2)}
+      </div>
+      <button id="buyButton" class="btn" on:click={buyProduct}>
+        Add to Cart
+      </button>
+    </div>
+  {:else}
+    <div class="item">
+      <p>{product.emoji}</p>
+      <div>
+        #{product.sku} {product.name} ${product.price}/{product.unit} Enter
+        quantity required:
+        <input bind:value={product.quantity} />
+        {product.unit} Total: ${(product.quantity * product.price).toFixed(2)}
+      </div>
+      <button id="buyButton" class="btn" on:click={buyProduct}>
+        Add to Cart
+      </button>
+    </div>
+  {/if}
 
 </div>
+
+<!-- <button id="buyButton" class="btn" on:click={buyProduct}>Add to Cart</button> -->
