@@ -18,10 +18,10 @@
 
 <style>
   .item {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
-
+    align-items: center; */
+    text-align: center;
     padding-left: 0.5em;
     border: 2px solid black;
   }
@@ -37,7 +37,7 @@
     color: whitesmoke;
     cursor: pointer;
   }
-  p {
+  .emoji {
     display: inline-block;
     font-size: 1.5rem;
     margin: 0.1em;
@@ -48,12 +48,14 @@
 
   {#if product.unit == 'kg'}
     <div class="item">
-      <p>{product.emoji}</p>
+      <p class="emoji">{product.emoji}</p>
       <div>
-        #{product.sku} {product.name} ${product.price}/{product.unit} Enter
-        quantity required:
-        <input bind:value={product.quantity} />
-        {product.unit} Total: ${(product.quantity * product.price).toFixed(2)}
+        <p>{product.name}</p>
+        <p>
+          ${product.price}/{product.unit} Enter quantity required:
+          <input bind:value={product.quantity} />
+          {product.unit} Total: ${(product.quantity * product.price).toFixed(2)}
+        </p>
       </div>
       <button id="buyButton" class="btn" on:click={buyProduct}>
         Add to Cart
@@ -61,12 +63,14 @@
     </div>
   {:else}
     <div class="item">
-      <p>{product.emoji}</p>
+      <p class="emoji">{product.emoji}</p>
       <div>
-        #{product.sku} {product.name} ${product.price}/{product.unit} Enter
-        quantity required:
-        <input bind:value={product.quantity} />
-        {product.unit} Total: ${(product.quantity * product.price).toFixed(2)}
+        <p>{product.name}</p>
+        <p>
+          ${product.price}/{product.unit} Enter quantity required:
+          <input bind:value={product.quantity} />
+          {product.unit} Total: ${(product.quantity * product.price).toFixed(2)}
+        </p>
       </div>
       <button id="buyButton" class="btn" on:click={buyProduct}>
         Add to Cart
